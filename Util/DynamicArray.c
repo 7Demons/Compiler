@@ -129,6 +129,7 @@ BOOL swap(DynamicArray *pArray, int indexP, int indexQ) {
     memcpy(pIndexP, pIndexQ, pArray->elementSize);
     memcpy(pIndexQ, temp, pArray->elementSize);
     free(temp);
+    return TRUE;
 }
 
 void *get(DynamicArray *pArray, int index) {
@@ -159,7 +160,7 @@ void debugArray(DynamicArray *pArray) {
     }
 
 }
-
+/*
 int main() {
     printf("size of void pointer: %d \n", sizeof(void*));
     printf("size of char: %d \n", sizeof(int));
@@ -170,13 +171,13 @@ int main() {
     int y = 7;
     int z = 4;
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 1000000; i++) {
         push(test, &x);
         push(test, &y);
         push(test, &z);
     }
 
-    debugArray(test);
+    //debugArray(test);
 
     printf("\n\n");
     pop(test);
@@ -186,17 +187,17 @@ int main() {
     pop(test);
     pop(test);
     pop(test);
-    debugArray(test);
+    //debugArray(test);
 
     printf("\n\n");
     swap(test, 0, 1);
-    debugArray(test);
+    //debugArray(test);
 
     printf("%d \n", test->maxCapacity);
     const int a; 
     scanf("%d", &a);
    
 }
-
+*/
 // c        197.4 MB
 // python   394.1 MB

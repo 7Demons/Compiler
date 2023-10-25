@@ -1,0 +1,118 @@
+// // need to know what state we are in ... probably use last added operator to know?
+// // so currently we are reading the buffer like a window:
+//     //          ----> |base --------> +offset|---------->
+//     // todo look into the setState and fix that shit.
+//     // lots of pointers that havent been free().
+// void lexScanner__OLD(rdBuf *file) {
+//     int base = 0;
+//     int offset = 1;
+//     printf("start\n");
+//     for (int i = base; i <= file->size; i++) {
+
+//         char *val = calloc(i, sizeof(char));
+//         void *windowStart = (char *)file->fileContents + (base*sizeof(char));
+
+//         memcpy(val, windowStart, sizeof(char)*offset);
+//         char lastVal = val[offset-1];
+
+//         printf("debug: %c\n", lastVal);
+//         printf("%s \n", val);
+        
+//         if (isOperator(lastVal)) {
+//             printf("this: %c is an operator\n", lastVal);
+//             base+= offset;
+//             offset = 0;
+//         }
+
+//         if (isSeperator(lastVal)) {
+//             printf("this: %c is a seperator\n", lastVal);
+//             base+= offset;
+//             offset = 0;
+//         }
+
+//         offset++;
+        
+//         // continue moving cursor
+//     }
+// }
+// void lexScanner(rdBuf *file) {
+    
+//     // our window
+//     span_t *fSpan = spanInit(file->fileContents, file->size);
+//     if (fSpan == NULL) {
+//         exit(0);
+//     }
+
+//     // lexical tokens
+//     DynamicArray *tokenStream = (DynamicArray *)createDynamicArray(sizeof(lexToken));
+//     if (!tokenStream) {
+//         exit(0);
+//     }
+
+//     tokenName state = tknInit;
+//     char currChar = ' ';
+//     char *charSpan = malloc(sizeof(char)*1024); 
+//     // State machine main loop. Planning to hand over execution to the relavent 
+//     // function as well as state responsibility.
+//     while(span_popU8(fSpan, &currChar)) {
+        
+//         int windowSize = (fSpan->cur - fSpan->bp) / sizeof(char);
+//         // unsafe operator!
+//         memcpy(charSpan, fSpan->bp, windowSize);
+//         charSpan[windowSize] = '\0';
+
+//         // this is fucked.
+//         if (isalpha(currChar)) {
+//             fSpan->bp = fSpan->cur;
+//             int i = 1;
+//             do {
+//                 Keyword kw = getKeyword(fSpan);
+//                 if (kw != 0) {
+//                     pushKeyword(kw);
+//                     i = 0;
+//                 }
+//                 else if (isIdentifier(currChar)) {
+//                     pushIdentifier();
+//                     i = 0;
+//                 }
+            
+//                 else if (isSeperator(currChar)) {
+//                                         Keyword kw = getKeyword(fSpan);
+//                     if (kw != 0) {
+//                         pushKeyword(kw);
+//                         i = 0;
+//                     }
+//                     else if (isIdentifier(currChar)) {
+//                         pushIdentifier();
+//                         i = 0;
+//                     }
+//                     pushSeperator(currChar);
+//                     i = 0;
+//                 }
+//                 else if (isOperator(currChar)) {
+//                     pushIdentifier();
+//                     pushOperator(currChar);
+//                     i = 0;
+//                 }
+//             } while(span_popU8(fSpan, &currChar) && i == 1);
+//         }
+
+//         else if (isdigit(currChar)) {
+//             printf("DIGIT UNIMPLEMENTED\n");
+
+//         }
+
+//         else if (isSeperator(currChar)) {
+//             pushSeperator(currChar);
+
+//         }
+
+//         else if (isOperator(currChar)) {
+//             pushOperator(currChar);
+//         }
+
+//         fSpan->bp = fSpan->cur;
+//     }
+//     free(charSpan);
+//     printf("finished!");
+// }

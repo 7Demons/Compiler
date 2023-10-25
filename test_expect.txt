@@ -1,0 +1,37 @@
+// identifier       int
+// identifier       main
+// seperator        (
+// seperator        )
+// seperator        {
+
+// identifier       int
+// identifier       a
+// operator         =
+// literal          5
+// seperator        ;
+
+// keyword          if
+// seperator        (
+// identifier       a
+// operator         +
+// literal          5
+// operator         ==
+// literal          10
+// seperator        )
+// seperator        {
+
+// ???              printf
+// seperator        (
+// seperator        "
+// literal          "hello "
+// seperator        "
+// seperator        )
+// seperator        ;
+
+// seperator        }
+
+// keyword          return
+// literal          0
+// seperator        ;
+
+// seperator        }
